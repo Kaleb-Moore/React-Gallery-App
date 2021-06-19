@@ -1,15 +1,15 @@
 // React libraries
 import React, { Component } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
+import axios from "axios"
 // CSS styling
 import "./index.css"
 // API key & secret
 import apiKey from "./config"
-import secret from "./config"
 // Components
 import SearchForm from "./components/SearchForm"
 import Nav from "./components/Nav"
-import PhotoContainer from "./components/Photo"
+import PhotoContainer from "./components/PhotoContainer"
 import NotFound from "./components/NotFound"
 
 class App extends Component {
@@ -20,29 +20,46 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {}
+
+  performSearch = (query) => {
+    const api_key = apiKey
+    axios
+      .get(
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+      )
+      .then((response) => {
+        this.setState({
+          photos: response.data.photos.photo,
+        })
+      })
+      .catch((error) => {
+        console.error("Error fetching and parsing data", error)
+      })
+  }
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchForm />
+          <SearchForm onSearch={this.performSearch} />
           <Nav />
           <Switch>
             <Route
               exact
               path="/"
-              render={() => <PhotoContainer SearchTerm="cats" />}
+              render={() => <PhotoContainer data={this.state.photos} />}
             />
             <Route
               path="/cats"
-              render={() => <PhotoContainer SearchTerm="cats" />}
+              render={() => <PhotoContainer data={this.state.photos} />}
             />
             <Route
               path="/dogs"
-              render={() => <PhotoContainer SearchTerm="dogs" />}
+              render={() => <PhotoContainer data={this.state.photos} />}
             />
             <Route
               path="/birds"
-              render={() => <PhotoContainer SearchTerm="birds" />}
+              render={() => <PhotoContainer data={this.state.photos} />}
             />
             <Route component={NotFound} />
           </Switch>
