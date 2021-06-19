@@ -1,6 +1,6 @@
 import React from "react"
 
-const NoPhotos = (props) => {
+const NotFound = (props) => {
   return (
     <li className="not-found">
       <h3>No Results Found</h3>
@@ -9,4 +9,4 @@ const NoPhotos = (props) => {
   )
 }
 
-export default NoPhotos
+export default NotFound
