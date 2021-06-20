@@ -13,7 +13,7 @@ class SearchForm extends Component {
 
   handleSearchSubmit = (e) => {
     e.preventDefault()
-    this.props.onSearch(this.state.searchtext)
+    this.props.onSearch(this.state.searchtext, true)
     e.target.reset()
   }
 

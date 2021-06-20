@@ -3,14 +3,15 @@ import Photo from "./Photo"
 
 const PhotoContainer = (props) => {
   const results = props.data
-  const urls = results.map(
-    (photo) =>
-      `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`
-  )
-
-  const photos = urls.map((url, index) => {
-    return <Photo url={url} key={index} />
-  })
+  const photos = results.map((photo) => (
+    <Photo
+      server={photo.server}
+      secret={photo.secret}
+      id={photo.id}
+      key={photo.id}
+      title={photo.title}
+    />
+  ))
 
   return (
     <div className="photo-container">
