@@ -20,14 +20,15 @@ class App extends Component {
     super()
     this.state = {
       photos: [],
-      cats: [],
-      dogs: [],
-      birds: [],
+      moon: [],
+      forest: [],
+      bridge: [],
+      searchInput: "",
     }
   }
 
   componentDidMount() {
-    const defaultLinks = ["cats", "dogs", "birds"]
+    const defaultLinks = ["moon", "forest", "bridge"]
     defaultLinks.map((link) => this.performSearch(link, false))
   }
 
@@ -41,6 +42,7 @@ class App extends Component {
         isNewData
           ? this.setState({
               photos: response.data.photos.photo,
+              searchInput: query,
             })
           : this.setState({
               [query]: response.data.photos.photo,
@@ -58,18 +60,28 @@ class App extends Component {
           <SearchForm onSearch={this.performSearch} />
           <Nav />
           <Switch>
-            <Route exact path="/" render={() => <Redirect to="/cats" />} />
+            <Route exact path="/" render={() => <Redirect to="/moon" />} />
             <Route
-              path="/cats"
-              render={() => <PhotoContainer data={this.state.cats} />}
+              path="/moon"
+              render={() => <PhotoContainer data={this.state.moon} />}
             />
             <Route
-              path="/dogs"
-              render={() => <PhotoContainer data={this.state.dogs} />}
+              path="/forest"
+              render={() => <PhotoContainer data={this.state.forest} />}
             />
             <Route
-              path="/birds"
-              render={() => <PhotoContainer data={this.state.birds} />}
+              path="/bridge"
+              render={() => <PhotoContainer data={this.state.bridge} />}
+            />
+            <Route
+              path="/search/:query"
+              render={({ match }) => (
+                <PhotoContainer
+                  query={match.params.query}
+                  data={this.state.photos}
+                  searchValue={this.state.searchInput}
+                />
+              )}
             />
             <Route component={NotFound} />
           </Switch>
