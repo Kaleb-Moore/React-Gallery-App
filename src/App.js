@@ -65,15 +65,21 @@ class App extends Component {
             <Route exact path="/" render={() => <Redirect to="/moon" />} />
             <Route
               path="/moon"
-              render={() => <PhotoContainer data={this.state.moon} />}
+              render={() => (
+                <PhotoContainer category="moon" data={this.state.moon} />
+              )}
             />
             <Route
               path="/forest"
-              render={() => <PhotoContainer data={this.state.forest} />}
+              render={() => (
+                <PhotoContainer category="forest" data={this.state.forest} />
+              )}
             />
             <Route
               path="/bridge"
-              render={() => <PhotoContainer data={this.state.bridge} />}
+              render={() => (
+                <PhotoContainer category="bridge" data={this.state.bridge} />
+              )}
             />
             <Route
               path="/search/:query"
@@ -83,6 +89,7 @@ class App extends Component {
                   data={this.state.photos}
                   searchValue={this.state.searchInput}
                   fetchData={this.performSearch}
+                  category=""
                 />
               )}
             />
