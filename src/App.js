@@ -27,11 +27,13 @@ class App extends Component {
     }
   }
 
+  // Load default pictures from Flickr API
   componentDidMount() {
     const defaultLinks = ["moon", "forest", "bridge"]
     defaultLinks.map((link) => this.performSearch(link, false))
   }
 
+  // Fetch data from Flickr API using default or search input
   performSearch = (query, isNewData) => {
     const api_key = apiKey
     axios
@@ -80,6 +82,7 @@ class App extends Component {
                   query={match.params.query}
                   data={this.state.photos}
                   searchValue={this.state.searchInput}
+                  fetchData={this.performSearch}
                 />
               )}
             />

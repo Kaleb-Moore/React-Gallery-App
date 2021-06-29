@@ -5,13 +5,14 @@ class SearchForm extends Component {
   state = {
     searchtext: "",
   }
-
+  // Search input saved to state
   onSearchChange = (e) => {
     this.setState({
       searchtext: e.target.value,
     })
   }
 
+  // Form submission handler: use state to fetch data from flickr API, and update URL
   handleSearchSubmit = (e) => {
     e.preventDefault()
     this.props.onSearch(this.state.searchtext, true)
