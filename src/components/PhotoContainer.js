@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Photo from "./Photo"
+import NoMatches from "./NoMatches"
 
 class PhotoContainer extends Component {
   // Fetch data from flickr API using via URL parameter
@@ -21,7 +22,9 @@ class PhotoContainer extends Component {
       />
     ))
 
-    return (
+    return results.length === 0 && this.props.loadState ? (
+      <NoMatches />
+    ) : (
       <div className="photo-container">
         <h2>
           {this.props.category

@@ -13,7 +13,7 @@ import apiKey from "./config"
 import SearchForm from "./components/SearchForm"
 import Nav from "./components/Nav"
 import PhotoContainer from "./components/PhotoContainer"
-import NotFound from "./components/NotFound"
+import Error404 from "./components/Error404"
 
 class App extends Component {
   constructor() {
@@ -24,6 +24,7 @@ class App extends Component {
       forest: [],
       bridge: [],
       searchInput: "",
+      loading: true,
     }
   }
 
@@ -45,9 +46,11 @@ class App extends Component {
           ? this.setState({
               photos: response.data.photos.photo,
               searchInput: query,
+              loading: false,
             })
           : this.setState({
               [query]: response.data.photos.photo,
+              loading: false,
             })
       })
       .catch((error) => {
@@ -61,40 +64,49 @@ class App extends Component {
         <div className="container">
           <SearchForm onSearch={this.performSearch} />
           <Nav />
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to="/moon" />} />
-            <Route
-              path="/moon"
-              render={() => (
-                <PhotoContainer category="moon" data={this.state.moon} />
-              )}
-            />
-            <Route
-              path="/forest"
-              render={() => (
-                <PhotoContainer category="forest" data={this.state.forest} />
-              )}
-            />
-            <Route
-              path="/bridge"
-              render={() => (
-                <PhotoContainer category="bridge" data={this.state.bridge} />
-              )}
-            />
-            <Route
-              path="/search/:query"
-              render={({ match }) => (
-                <PhotoContainer
-                  query={match.params.query}
-                  data={this.state.photos}
-                  searchValue={this.state.searchInput}
-                  fetchData={this.performSearch}
-                  category=""
-                />
-              )}
-            />
-            <Route component={NotFound} />
-          </Switch>
+
+          {this.state.moon.length *
+            this.state.forest.length *
+            this.state.bridge.length ===
+            0 || this.state.loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            <Switch>
+              <Route exact path="/" render={() => <Redirect to="/moon" />} />
+              <Route
+                path="/moon"
+                render={() => (
+                  <PhotoContainer category="moon" data={this.state.moon} />
+                )}
+              />
+              <Route
+                path="/forest"
+                render={() => (
+                  <PhotoContainer category="forest" data={this.state.forest} />
+                )}
+              />
+              <Route
+                path="/bridge"
+                render={() => (
+                  <PhotoContainer category="bridge" data={this.state.bridge} />
+                )}
+              />
+              <Route
+                path="/search/:query"
+                render={({ match }) => (
+                  <PhotoContainer
+                    query={match.params.query}
+                    data={this.state.photos}
+                    searchValue={this.state.searchInput}
+                    fetchData={this.performSearch}
+                    category=""
+                    loadstate={this.state.loading}
+                  />
+                )}
+              />
+              <Route component={Error404} />
+            </Switch>
+          )}
         </div>
       </Router>
     )
