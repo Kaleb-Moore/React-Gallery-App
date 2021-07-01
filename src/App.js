@@ -36,6 +36,7 @@ class App extends Component {
 
   // Fetch data from Flickr API using default or search input
   performSearch = (query, isNewData) => {
+    this.setState({ loading: true })
     const api_key = apiKey
     axios
       .get(
@@ -100,7 +101,6 @@ class App extends Component {
                     searchValue={this.state.searchInput}
                     fetchData={this.performSearch}
                     category=""
-                    loadstate={this.state.loading}
                   />
                 )}
               />
