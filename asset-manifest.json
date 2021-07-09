@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/github.com/airoble-1/React-Gallery-App/static/css/main.3d7de0f2.chunk.css",
+    "main.js": "/github.com/airoble-1/React-Gallery-App/static/js/main.56132bbd.chunk.js",
+    "main.js.map": "/github.com/airoble-1/React-Gallery-App/static/js/main.56132bbd.chunk.js.map",
+    "runtime-main.js": "/github.com/airoble-1/React-Gallery-App/static/js/runtime-main.47768223.js",
+    "runtime-main.js.map": "/github.com/airoble-1/React-Gallery-App/static/js/runtime-main.47768223.js.map",
+    "static/js/2.b4dac9fd.chunk.js": "/github.com/airoble-1/React-Gallery-App/static/js/2.b4dac9fd.chunk.js",
+    "static/js/2.b4dac9fd.chunk.js.map": "/github.com/airoble-1/React-Gallery-App/static/js/2.b4dac9fd.chunk.js.map",
+    "index.html": "/github.com/airoble-1/React-Gallery-App/index.html",
+    "static/css/main.3d7de0f2.chunk.css.map": "/github.com/airoble-1/React-Gallery-App/static/css/main.3d7de0f2.chunk.css.map",
+    "static/js/2.b4dac9fd.chunk.js.LICENSE.txt": "/github.com/airoble-1/React-Gallery-App/static/js/2.b4dac9fd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.47768223.js",
+    "static/js/2.b4dac9fd.chunk.js",
+    "static/css/main.3d7de0f2.chunk.css",
+    "static/js/main.56132bbd.chunk.js"
+  ]
+}
