@@ -62,7 +62,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div className="container wrapper">
           <SearchForm onSearch={this.performSearch} />
           <Nav />
 

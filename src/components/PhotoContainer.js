@@ -22,18 +22,20 @@ class PhotoContainer extends Component {
       />
     ))
 
-    return results.length === 0 && this.props.loadState ? (
-      <NoMatches />
-    ) : (
-      <div className="photo-container">
-        <h2>
-          {this.props.category
-            ? `Results for: ${this.props.category}`
-            : `Results for: ${this.props.query}`}
-        </h2>
-        <ul>{photos}</ul>
-      </div>
-    )
+    if (results.length === 0) {
+      return <NoMatches />
+    } else {
+      return (
+        <div className="photo-container">
+          <h2>
+            {this.props.category
+              ? `Results for: ${this.props.category}`
+              : `Results for: ${this.props.query}`}
+          </h2>
+          <ul>{photos}</ul>
+        </div>
+      )
+    }
   }
 }
 

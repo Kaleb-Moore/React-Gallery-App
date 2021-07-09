@@ -2,6 +2,7 @@ body {
   text-align: center;
   font-family: "Open Sans", sans-serif;
   color: #3f4850;
+  background-color: #e8f1f7;
 }
 
 h2 {
@@ -17,6 +18,15 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.wrapper {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px rgba(50, 50, 50, 0.5);
+  border-top: 1px solid rgba(50, 50, 50, 0.5);
+  border-left: 1px solid rgba(50, 50, 50, 0.5);
 }
 
 .search-form {
@@ -65,8 +75,7 @@ input:focus {
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: red;
-  color: black;
+  background-color: lightseagreen;
 }
 
 .photo-container ul {
@@ -83,6 +92,7 @@ input:focus {
   overflow: hidden;
   margin-bottom: 15px;
   border: 1px solid #000;
+  border-radius: 5px;
 }
 
 .photo-container ul img {
@@ -97,6 +107,11 @@ input:focus {
 
 .photo-container .not-found {
   width: 100%;
+}
+
+.not-found h3 {
+  color: red;
+  transition: 0.5s ease-out;
 }
 
 @media only screen and (max-width: 767px) {
